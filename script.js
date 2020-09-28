@@ -1,20 +1,22 @@
 function handleEvent() {
   let number = document.getElementById("number").value;
 
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () {
-    const data = JSON.parse(this.responseText);
+  var req = new XMLHttpRequest();
+  req.overrideMimeType("application/json");
+  req.open("GET", `./api/script.php?number=${number}`, true);
+  req.onload = function () {
+    var jsonData = JSON.parse(req.responseText);
 
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("error").innerHTML = "";
-      document.getElementById("word").innerHTML = data.value;
-    }
-
-    if (this.readyState == 4 && this.status == 422) {
-      document.getElementById("word").innerHTML = "";
-      document.getElementById("error").innerHTML = data.message.number;
+    if (req.readyState == 4) {
+      if (req.status == 200) {
+        document.getElementById("error").innerHTML = "";
+        document.getElementById("word").innerHTML = jsonData.value;
+      }
+      if (this.status == 422) {
+        document.getElementById("word").innerHTML = "";
+        document.getElementById("error").innerHTML = jsonData.message.number;
+      }
     }
   };
-  xhttp.open("GET", `./api/script.php?number=${number}`, true);
-  xhttp.send();
+  req.send(null);
 }
