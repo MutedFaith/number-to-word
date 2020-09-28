@@ -1,0 +1,34 @@
+/* Utilities */
+.d-flex {
+  display: flex;
+}
+
+.flexDirectionColumn {
+  flex-direction: column;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+.alignCenter {
+  align-items: center;
+}
+
+.textError {
+  color: red;
+}
+
+/* Header */
+.header {
+  height: 50px;
+  background-color: brown;
+  color: white;
+  margin-bottom: 70px;
+}
+
+/* Header */
+.content {
+  height: 50px;
+  text-align: center;
+}
